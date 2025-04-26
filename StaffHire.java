@@ -30,51 +30,81 @@ public class StaffHire {
         this.qualification = "";
         this.appointedBy = "";
         this.joined = false;
-        }
+    }
         
         //Accessor Methods
         
-        public int getVacancyNumber(){
+    public int getVacancyNumber(){
             return this.vacancyNumber;
         }
         
-        public int getDesignation(){
+    public String getDesignation(){
             return this.designation;
-        }
+    }
         
-        public int getJobType(){
+    public String getJobType(){
             return this.JobType;
         }
         
-        public int getStaffName(){
+    public String getStaffName(){
             return this.staffName;
         }
         
-        public int getJoiningDate(){
+    public String getJoiningDate(){
             return this.joiningDate;
         }
         
-        public int getQualification(){
+    public String getQualification(){
             return this.qualification;
         }
         
-        public int getAppointedBy(){
-            return this.appintedBy;
+    public String getAppointedBy(){
+            return this.appointedBy;
         }
         
-        public int getJoined(){
+    public boolean getJoined(){
             return this.joined;
         }
         
         //Mutator method
         
         public void setStaffName(String name) {
-                this.StaffName = name;
+                this.staffName = name;
         }
         
-        public void setJoiningDate(String name){
-            this.
+        public void setJoiningDate(String date){
+            this.joiningDate = date;
         }
         
+        public void setQualification(String qualification) {
+            this.qualification = qualification;
+        }
+        
+        public void setAppintedBy(String appointedBy) {
+            this.appointedBy = appointedBy;
+        }
+        
+        public void setJoined(boolean status) {
+            this.joined = status;
+        }
+        
+        
+    public void showDetails() {
+       //Shows staff details only after joining 
+       
+       System.out.println("Vacancy Number: " + this.vacancyNumber);
+       System.out.println("Designation: " + this.designation);
+       System.out.println("Job Type: " + this.JobType);
+       if (this.joined){
+           System.out.println("Staff Name: " + this.staffName);
+           System.out.println("Joining Date: " + this.joiningDate);
+           System.out.println("Qualification: " + this.qualification);
+           System.out.println("Appointed By: " + this.appointedBy);
+           
+       } else {
+           System.out.println("Unable to locate staff member, vacancy not taken.");
+       }
+    }
+}       
         
         
