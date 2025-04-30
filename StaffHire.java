@@ -12,7 +12,7 @@ public class StaffHire {
     
     private int vacancyNumber;
     private String designation;
-    private String JobType;
+    private String jobType;
     private String staffName;
     private String joiningDate;
     private String qualification;
@@ -24,7 +24,7 @@ public class StaffHire {
         
         this.vacancyNumber = vacancyNumber;
         this.designation = designation;
-        this.JobType = JobType;
+        this.jobType = jobType;
         this.staffName = "";
         this.joiningDate = "";
         this.qualification = "";
@@ -43,7 +43,7 @@ public class StaffHire {
     }
         
     public String getJobType(){
-            return this.JobType;
+            return this.jobType;
         }
         
     public String getStaffName(){
@@ -62,7 +62,7 @@ public class StaffHire {
             return this.appointedBy;
         }
         
-    public boolean getJoined(){
+    public boolean hasJoined(){
             return this.joined;
         }
         
@@ -80,7 +80,7 @@ public class StaffHire {
             this.qualification = qualification;
         }
         
-        public void setAppintedBy(String appointedBy) {
+        public void setAppointedBy(String appointedBy) {
             this.appointedBy = appointedBy;
         }
         
@@ -94,7 +94,7 @@ public class StaffHire {
        
        System.out.println("Vacancy Number: " + this.vacancyNumber);
        System.out.println("Designation: " + this.designation);
-       System.out.println("Job Type: " + this.JobType);
+       System.out.println("Job Type: " + this.jobType);
        if (this.joined){
            System.out.println("Staff Name: " + this.staffName);
            System.out.println("Joining Date: " + this.joiningDate);

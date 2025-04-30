@@ -39,15 +39,37 @@ public class PartTimeStaffHire extends StaffHire {
     }
     
     //Mutator methods 
-    public void terminateStaff() {
+    public void setShifts(String shift) {
         if (!terminated) {
             this.shifts = shifts;
         } else {
             System.out.println("Error! Cannot change shift, staff terminated.");
         }
-        
-        
     }
+        public void terminateStaff() {
+            if (!terminated) {
+                setStaffName("");
+                setJoiningDate("");
+                setQualification("");
+                setAppointedBy("");
+                setJoined(false);
+                this.terminated = true;
+            } else {
+                System.out.println("Staff has already been terminated.");
+            }
+        }
+        
+        @Override
+        public void showDetails() {
+            super.showDetails();
+            if (hasJoined()) {
+                System.out.println("Working hours: " + this.workingHours);
+                System.out.println("Wager per hour: " + this.wagesPerHour);
+                System.out.println("Shifts: " + this.shifts);
+                System.out.println("Terminated: " + this.terminated);
+            }
+        }
+    
 
 }
 

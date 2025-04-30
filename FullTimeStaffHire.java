@@ -43,6 +43,12 @@ public int getWeeklyHours() {
         this.weeklyHours = hours;
     }
     
-    
-    
+    @Override
+    public void showDetails() {
+        super.showDetails();
+        if (hasJoined()) {
+        System.out.println("Salary:" + this.salary);
+        System.out.println("Weekly Hours: " + this.weeklyHours);
+    }
+}
 }

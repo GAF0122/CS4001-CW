@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=FullTimeStaffHire
+comment0.text=\r\n\ FullTimeStaffHire,\ a\ subclass\ of\ of\ StaffHire\ created\ to\ represent\ a\ full-time\ staff\ member\ and\ it\ manages\ more\ attributes\ such\ as\ salary\ and\ weekly\ working\ hours\ and\ ensures\ \r\n\ salary\ can\ only\ be\ set\ before\ a\ staff\ member\ has\ been\ hired.\r\n\r\n\ @GabrielCoelho\ \r\n\ @26/04/2025\r\n
+comment1.params=vacancyNumber\ designation\ jobType\ salary\ weeklyHours
+comment1.target=FullTimeStaffHire(int,\ java.lang.String,\ java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=int\ getSalary()
+comment3.params=
+comment3.target=int\ getWeeklyHours()
+comment4.params=salary
+comment4.target=void\ setSalary(int)
+comment5.params=hours
+comment5.target=void\ setWeeklyHours(int)
+comment6.params=
+comment6.target=void\ showDetails()
+numComments=7
