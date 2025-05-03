@@ -49,7 +49,7 @@ public class PartTimeStaffHire extends StaffHire
     {
         if (!terminated) 
         {
-            this.shifts = shifts;
+            this.shifts = shift;
         } else 
         {
             System.out.println("Error! Cannot change shift, staff terminated.");

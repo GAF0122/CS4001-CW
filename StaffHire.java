@@ -105,7 +105,7 @@ public class StaffHire
         
         
     public void displayDetails() 
-    {
+    { System.out.println("\n\n");
        //Shows staff details only after joining 
        
        System.out.println("Vacancy Number: " + this.vacancyNumber);

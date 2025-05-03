@@ -31,16 +31,16 @@
        private void createGUI() 
        {
            frame = new JFrame("Recruitment System");
-           frame.setSize(500, 400);
+           frame.setSize(450, 400);
            frame.setLayout(new FlowLayout());
            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
            
            frame.add(new JLabel("Vacancy No:"));
-           vacancyField = new JTextField(5);
+           vacancyField = new JTextField(2);
            frame.add(vacancyField);
            
            frame.add(new JLabel("Staff Name:"));
-           nameField = new JTextField(10);
+           nameField = new JTextField(20);
            frame.add(nameField);
            
            frame.add(new JLabel("Joining Date:"));
@@ -48,15 +48,15 @@
            frame.add(dateField);
            
            frame.add(new JLabel("Salary:"));
-           salaryField = new JTextField (6);
+           salaryField = new JTextField (3);
            frame.add(salaryField);
            
            frame.add(new JLabel("Shift (PT):"));
-           shiftField = new JTextField(5);
+           shiftField = new JTextField(4);
            frame.add(shiftField);
            
            frame.add(new JLabel("Designation:"));
-           designationField = new JTextField(10);
+           designationField = new JTextField(8);
            frame.add(designationField);
            
            frame.add(new JLabel("Qualification:"));
@@ -68,7 +68,7 @@
            frame.add(appointedByField);
 
            frame.add(new JLabel("Index to Display:"));
-           indexField = new JTextField(3);
+           indexField = new JTextField(5);
            frame.add(indexField);
            
            
@@ -86,7 +86,7 @@
            setSalaryButton.addActionListener(this);
            frame.add(setSalaryButton);
            
-           setShiftButton = new JButton("Shift set");
+           setShiftButton = new JButton("Set Shift");
            setShiftButton.addActionListener(this);
            frame.add(setShiftButton);
            
@@ -102,7 +102,7 @@
            clearButton.addActionListener(this);
            frame.add(clearButton);
            
-           outputArea = new JTextArea(10, 50);
+           outputArea = new JTextArea(10, 40);
            outputArea.setEditable(false);
            frame.add(new JScrollPane(outputArea));
            
@@ -150,7 +150,7 @@
                 pt.setJoined(true);
                 staffList.add(pt);
                 outputArea.setText("Part-time staff added.\n");
-            }
+            } 
             else if (cmd.equals("Set Salary"))
             {
                 int newSalary = Integer.parseInt(salaryField.getText());
@@ -172,7 +172,8 @@
                     if (s instanceof PartTimeStaffHire && s.getVacancyNumber() == vacancy)
                     {
                         ((PartTimeStaffHire) s).setShifts(shiftField.getText());
-                        outputArea.setText("Shift updated.\n");
+                        outputArea.setText("Shift updated to:" + shiftField.getText() + "\n");
+                        s.displayDetails();
                         return;
                     }
                 }

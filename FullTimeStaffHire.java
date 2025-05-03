@@ -53,7 +53,7 @@ public int getWeeklyHours()
     
     @Override
     public void displayDetails() 
-    {
+    { System.out.println("\n\n");
         super.displayDetails();
         if (isJoined()) 
     {
