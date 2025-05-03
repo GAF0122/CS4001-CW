@@ -12,5 +12,5 @@ comment4.target=void\ setSalary(int)
 comment5.params=hours
 comment5.target=void\ setWeeklyHours(int)
 comment6.params=
-comment6.target=void\ showDetails()
+comment6.target=void\ displayDetails()
 numComments=7

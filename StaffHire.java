@@ -7,7 +7,8 @@
  * @Gabriel
  * @25/04/2025
  */
-public class StaffHire {
+public class StaffHire 
+{
     //Instance Variables
     
     private int vacancyNumber;
@@ -19,7 +20,8 @@ public class StaffHire {
     private String appointedBy;
     private boolean joined;
     
-    public StaffHire (int vacancyNumber, String designation, String jobType) {
+    public StaffHire (int vacancyNumber, String designation, String jobType) 
+    {
         //Constructors
         
         this.vacancyNumber = vacancyNumber;
@@ -34,74 +36,90 @@ public class StaffHire {
         
         //Accessor Methods
         
-    public int getVacancyNumber(){
+    public int getVacancyNumber()
+    {
             return this.vacancyNumber;
-        }
+    }
         
-    public String getDesignation(){
+    public String getDesignation()
+    {
             return this.designation;
     }
         
-    public String getJobType(){
+    public String getJobType()
+    {
             return this.jobType;
-        }
+    }
         
-    public String getStaffName(){
+    public String getStaffName()
+    {
             return this.staffName;
-        }
+    }
         
-    public String getJoiningDate(){
+    public String getJoiningDate()
+    {
             return this.joiningDate;
-        }
+    }
         
-    public String getQualification(){
+    public String getQualification()
+    {
             return this.qualification;
-        }
+    }
         
-    public String getAppointedBy(){
+    public String getAppointedBy()
+    {
             return this.appointedBy;
-        }
+    }
         
-    public boolean hasJoined(){
+    public boolean isJoined()
+    {
             return this.joined;
-        }
+    }
         
         //Mutator method
         
-        public void setStaffName(String name) {
-                this.staffName = name;
+        public void setStaffName(String name)
+        {
+            this.staffName = name;
         }
         
-        public void setJoiningDate(String date){
+        public void setJoiningDate(String date)
+        {
             this.joiningDate = date;
         }
         
-        public void setQualification(String qualification) {
+        public void setQualification(String qualification) 
+        {
             this.qualification = qualification;
         }
         
-        public void setAppointedBy(String appointedBy) {
+        public void setAppointedBy(String appointedBy) 
+        {
             this.appointedBy = appointedBy;
         }
         
-        public void setJoined(boolean status) {
+        public void setJoined(boolean status) 
+        {
             this.joined = status;
         }
         
         
-    public void showDetails() {
+    public void displayDetails() 
+    {
        //Shows staff details only after joining 
        
        System.out.println("Vacancy Number: " + this.vacancyNumber);
        System.out.println("Designation: " + this.designation);
        System.out.println("Job Type: " + this.jobType);
-       if (this.joined){
-           System.out.println("Staff Name: " + this.staffName);
-           System.out.println("Joining Date: " + this.joiningDate);
+       if (this.joined)
+       {
+           System.out.println("Staff Name: " + this.staffName);          
+           System.out.println("Joining Date: " + this.joiningDate);          
            System.out.println("Qualification: " + this.qualification);
            System.out.println("Appointed By: " + this.appointedBy);
            
-       } else {
+       } else 
+       {
            System.out.println("Unable to locate staff member, vacancy not taken.");
        }
     }

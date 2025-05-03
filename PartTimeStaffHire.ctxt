@@ -16,5 +16,5 @@ comment6.target=void\ setShifts(java.lang.String)
 comment7.params=
 comment7.target=void\ terminateStaff()
 comment8.params=
-comment8.target=void\ showDetails()
+comment8.target=void\ displayDetails()
 numComments=9

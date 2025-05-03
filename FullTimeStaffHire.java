@@ -7,14 +7,16 @@
  * @26/04/2025
  */
 
-public class FullTimeStaffHire extends StaffHire {
+public class FullTimeStaffHire extends StaffHire 
+{
     
     //Instance variables
     private int salary;
     private int weeklyHours;
     
     
-    public FullTimeStaffHire(int vacancyNumber, String designation, String jobType, int salary, int weeklyHours) {
+    public FullTimeStaffHire(int vacancyNumber, String designation, String jobType, int salary, int weeklyHours) 
+    {
         super(vacancyNumber, designation, jobType);
         this.salary = salary;
         this.weeklyHours = weeklyHours;
@@ -22,31 +24,39 @@ public class FullTimeStaffHire extends StaffHire {
     
     
     //Accessor methods
-public int getSalary(){
+public int getSalary()
+{
     return this.salary;
 }
 
-public int getWeeklyHours() {
+public int getWeeklyHours() 
+{
     return this.weeklyHours;
 }
 
     //Mutator methods
-    public void setSalary(int salary) {
-        if (!hasJoined()) {
+    public void setSalary(int salary) 
+    {
+        if (!isJoined()) 
+        {
             this.salary = salary;
-            } else{
+        } else
+        {
                 System.out.println("Error! Unable to change salary after staff is appointed.");
-                }
+        }
     }
     
-    public void setWeeklyHours(int hours) {
+    public void setWeeklyHours(int hours) 
+    {
         this.weeklyHours = hours;
     }
     
     @Override
-    public void showDetails() {
-        super.showDetails();
-        if (hasJoined()) {
+    public void displayDetails() 
+    {
+        super.displayDetails();
+        if (isJoined()) 
+    {
         System.out.println("Salary:" + this.salary);
         System.out.println("Weekly Hours: " + this.weeklyHours);
     }
