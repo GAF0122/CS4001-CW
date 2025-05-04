@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=PartTimeStaffHire
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ PartTimeStaffHire\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ PartTimeStaffHire,\ a\ subclass\ of\ StaffHire\ used\ to\ hire\ part-time\ employees.\r\n\ It\ manages\ attributes\ like\ working\ hours,\ wages\ per\ hour,\ shifts,\ and\ termination\ status.\r\n\r\n\ @Gabriel\r\n\ @1.0\r\n
 comment1.params=vacancyNumber\ designation\ jobType\ workingHours\ wagesPerHour\ shifts
 comment1.target=PartTimeStaffHire(int,\ java.lang.String,\ java.lang.String,\ int,\ int,\ java.lang.String)
 comment2.params=

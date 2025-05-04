@@ -1,9 +1,10 @@
 
 /**
- * Write a description of class PartTimeStaffHire here.
+ * PartTimeStaffHire, a subclass of StaffHire used to hire part-time employees.
+ * It manages attributes like working hours, wages per hour, shifts, and termination status.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @Gabriel
+ * @1.0
  */
 public class PartTimeStaffHire extends StaffHire 
 {
@@ -26,7 +27,7 @@ public class PartTimeStaffHire extends StaffHire
     //Accessor Methods
     public int getWorkingHours()
     {
-        return this.wagesPerHour;
+        return this.workingHours;
     }
     
     public int getWagesPerHour() 
@@ -76,7 +77,7 @@ public class PartTimeStaffHire extends StaffHire
             super.displayDetails();
             if (isJoined()) {
                 System.out.println("Working hours: " + this.workingHours);
-                System.out.println("Wager per hour: " + this.wagesPerHour);
+                System.out.println("Wages per hour: " + this.wagesPerHour);
                 System.out.println("Shifts: " + this.shifts);
                 System.out.println("Terminated: " + this.terminated);
             }

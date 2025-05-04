@@ -4,7 +4,7 @@
  * terminating and displaying full- and part-time staff information.
  *
  * @Gabriel
- * @1.0(03/05/2025
+ * @1.0
  */
 
     import javax.swing.*;
@@ -14,22 +14,44 @@
     
     public class RecruitmentSystem implements ActionListener 
     {
-        private JFrame frame;
-        private JTextField vacancyField, nameField, dateField, salaryField, shiftField, indexField;
-        private JTextField designationField, qualificationField, appointedByField;
-        private JButton addFTButton, addPTButton, displayButton, setSalaryButton, setShiftButton, terminateButton, clearButton;
-        private JTextArea outputArea;
         
+        //Input Fields
+        private JTextField vacancyField;
+        private JTextField nameField;
+        private JTextField dateField;
+        private JTextField salaryField;
+        private JTextField shiftField; 
+        private JTextField indexField;
+        private JTextField designationField;
+        private JTextField qualificationField;
+        private JTextField appointedByField;
+        
+        //Buttons
+        private JButton addFTButton;
+        private JButton addPTButton; 
+        private JButton displayButton;
+        private JButton setSalaryButton;
+        private JButton setShiftButton;
+        private JButton terminateButton;
+        private JButton clearButton;
+        
+        //Frame
+        private JFrame frame;
+        private JTextArea outputArea;
         private ArrayList<StaffHire> staffList;
         
         public RecruitmentSystem()
     {
         staffList = new ArrayList<>();
         createGUI();
-    }   
+    } 
     
+/**
+ * This method creates the GUI layout and initializes all components.
+ */
        private void createGUI() 
        {
+           //Frame input fields
            frame = new JFrame("Recruitment System");
            frame.setSize(450, 400);
            frame.setLayout(new FlowLayout());
@@ -73,7 +95,7 @@
            
            
            
-           
+           //Frame buttons 
            addFTButton = new JButton("Add FT");
            addFTButton.addActionListener(this);
            frame.add(addFTButton);
@@ -111,13 +133,11 @@
        
        public void actionPerformed(ActionEvent e)
     {
-        try
-        {
+        try {
             String cmd = e.getActionCommand();
             int vacancy = Integer.parseInt(vacancyField.getText());
 
-            if (cmd.equals("Add FT"))
-            {
+            if (cmd.equals("Add FT")) {
                 FullTimeStaffHire ft = new FullTimeStaffHire(
                     vacancy,
                     designationField.getText(),
@@ -132,9 +152,7 @@
                 ft.setJoined(true);
                 staffList.add(ft);
                 outputArea.setText("Full-time staff added.\n");
-            }
-            else if (cmd.equals("Add PT"))
-            {
+            } else if (cmd.equals("Add PT")) {
                 PartTimeStaffHire pt = new PartTimeStaffHire(
                     vacancy,
                     designationField.getText(),
@@ -150,27 +168,19 @@
                 pt.setJoined(true);
                 staffList.add(pt);
                 outputArea.setText("Part-time staff added.\n");
-            } 
-            else if (cmd.equals("Set Salary"))
-            {
+            }  else if (cmd.equals("Set Salary")) {
                 int newSalary = Integer.parseInt(salaryField.getText());
-                for (StaffHire s : staffList)
-                {
-                    if (s instanceof FullTimeStaffHire && s.getVacancyNumber() == vacancy)
-                    {
+                for (StaffHire s : staffList) {
+                    if (s instanceof FullTimeStaffHire && s.getVacancyNumber() == vacancy) {
                         ((FullTimeStaffHire) s).setSalary(newSalary);
                         outputArea.setText("Salary updated.\n");
                         return;
                     }
                 }
                 outputArea.setText("FT staff not found.\n");
-            }
-            else if (cmd.equals("Set Shift"))
-            {
-                for (StaffHire s : staffList)
-                {
-                    if (s instanceof PartTimeStaffHire && s.getVacancyNumber() == vacancy)
-                    {
+            } else if (cmd.equals("Set Shift")) {
+                for (StaffHire s : staffList) {
+                    if (s instanceof PartTimeStaffHire && s.getVacancyNumber() == vacancy) {
                         ((PartTimeStaffHire) s).setShifts(shiftField.getText());
                         outputArea.setText("Shift updated to:" + shiftField.getText() + "\n");
                         s.displayDetails();
@@ -178,13 +188,9 @@
                     }
                 }
                 outputArea.setText("PT staff not found.\n");
-            }
-            else if (cmd.equals("Terminate"))
-            {
-                for (StaffHire s : staffList)
-                {
-                    if (s instanceof PartTimeStaffHire && s.getVacancyNumber() == vacancy)
-                    {
+            } else if (cmd.equals("Terminate")) {
+                for (StaffHire s : staffList) {
+                    if (s instanceof PartTimeStaffHire && s.getVacancyNumber() == vacancy) {
                         ((PartTimeStaffHire) s).terminateStaff();
                         outputArea.setText("Part-time staff terminated.\n");
                         return;
@@ -192,27 +198,20 @@
                 }
                 outputArea.setText("PT staff not found.\n");
             }
-            else if (cmd.equals("Display"))
-            {
+            else if (cmd.equals("Display")) {
                 int index = Integer.parseInt(indexField.getText());
-                if (index >= 0 && index < staffList.size())
-                {
+                if (index >= 0 && index < staffList.size()) {
                     outputArea.setText("Showing staff at index " + index + ":\n");
                     staffList.get(index).displayDetails();
-                }
-                else
-                {
+                } else {
                     outputArea.setText("Invalid index.\n");
                 }
-            }
-            else if (cmd.equals("Clear"))
-            {
+            } else if (cmd.equals("Clear")) {
                 clearFields();
                 outputArea.setText("");
             }
         }
-        catch (NumberFormatException ex)
-        {
+        catch (NumberFormatException ex) {
             outputArea.setText("Please enter valid numbers.\n");
         }
     }

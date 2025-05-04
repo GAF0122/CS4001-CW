@@ -5,7 +5,7 @@
  staffName, joiningDate, qualification, appointedBy and joined.
  *
  * @Gabriel
- * @25/04/2025
+ * @1.0
  */
 public class StaffHire 
 {
@@ -105,7 +105,8 @@ public class StaffHire
         
         
     public void displayDetails() 
-    { System.out.println("\n\n");
+    { 
+        System.out.println("\n\n");
        //Shows staff details only after joining 
        
        System.out.println("Vacancy Number: " + this.vacancyNumber);
@@ -122,6 +123,7 @@ public class StaffHire
        {
            System.out.println("Unable to locate staff member, vacancy not taken.");
        }
+       System.out.println("\n\n");
     }
 }       
         
