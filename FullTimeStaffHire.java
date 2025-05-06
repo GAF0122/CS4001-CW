@@ -1,67 +1,109 @@
 
 /**
- * FullTimeStaffHire, a subclass of of StaffHire represents a full-time staff  member and it manages more attributes such as salary and weekly working hours and ensures 
- * salary can only be set before a staff member has been hired.
+ * FullTimeStaffHire, a subclass of of StaffHire represents a full-time staff  member.
+ * Manages more attributes such as salary and weekly working hours.
+ * Salary can only be set before a staff member has been hired.
  *
- * @GabrielCoelho 
- * @1.0
+ * @author GabrielCoelho 
+ * @version 2.0
  */
 
-public class FullTimeStaffHire extends StaffHire 
+public class FullTimeStaffHire extends StaffHire
 {
-    
-//Instance variables
-private int salary;
-private int weeklyHours;
-    
-    
-public FullTimeStaffHire(int vacancyNumber, String designation, String jobType, int salary, int weeklyHours) 
+    private double salary;
+    private double weeklyFractionalHours;
+
+    /**
+     * Constructs a FullTimeStaffHire with all details.
+     *
+     * @param vacancyNumber           inherited vacancy number
+     * @param designation             inherited designation
+     * @param jobType                 inherited job type
+     * @param staffName               inherited staff name
+     * @param joiningDate             inherited joining date
+     * @param qualification           inherited qualification
+     * @param appointedBy             inherited appointed-by
+     * @param joined                  inherited joined status
+     * @param salary                  the full-time salary
+     * @param weeklyFractionalHours   the full-time weekly hours
+     */
+    public FullTimeStaffHire(
+        int vacancyNumber,
+        String designation,
+        String jobType,
+        String staffName,
+        String joiningDate,
+        String qualification,
+        String appointedBy,
+        boolean joined,
+        double salary,
+        double weeklyFractionalHours
+    )
     {
         super(vacancyNumber, designation, jobType);
+        setStaffName(staffName);
+        setJoiningDate(joiningDate);
+        setQualification(qualification);
+        setAppointedBy(appointedBy);
+        setJoined(joined);
         this.salary = salary;
-        this.weeklyHours = weeklyHours;
+        this.weeklyFractionalHours = weeklyFractionalHours;
     }
-    
-    
-//Accessor methods
-public int getSalary()
-{
-    return this.salary;
-}
 
-public int getWeeklyHours() 
-{
-    return this.weeklyHours;
-}
-
-/**
- * Updates the salary if the staff member has not yet joined.
- * @param salary The new salary to be set.
- */
-    //Mutator methods
-    public void setSalary(int salary) 
+    /**
+     * Returns the salary.
+     * @return salary
+     */
+    public double getSalary()
     {
-        if (!isJoined()) {
+        return salary;
+    }
+
+    /**
+     * Returns the weekly fractional hours.
+     * @return weeklyFractionalHours
+     */
+    public double getWeeklyFractionalHours()
+    {
+        return weeklyFractionalHours;
+    }
+
+    /**
+     * Sets a new salary, only if the staff has not yet joined.
+     * @param salary 
+     */
+    public void setSalary(double salary)
+    {
+        if (!isJoined())
+        {
             this.salary = salary;
-        } else {
-                System.out.println("Error! Unable to change salary after staff is appointed.");
+        }
+        else
+        {
+            System.out.println("Error! Cannot change salary after appointment.");
         }
     }
 
-public void setWeeklyHours(int hours) 
+    /**
+     * Sets new weekly fractional hours.
+     * @param hours
+     */
+    public void setWeeklyFractionalHours(double hours)
     {
-        this.weeklyHours = hours;
+        this.weeklyFractionalHours = hours;
     }
-    
+
+    /**
+     * Displays the full-time staff details, including salary & hours,
+     * only if staff has joined.
+     */
     @Override
-    public void displayDetails() 
-    { 
-    System.out.println("\n\n");
-    super.displayDetails();
+    public void displayDetails()
+    {
+        super.displayDetails();
         if (isJoined()) {
-        System.out.println("Salary:" + this.salary);
-        System.out.println("Weekly Hours: " + this.weeklyHours);
+            System.out.println("Salary:                   " + salary);
+            System.out.println("Weekly Fractional Hours:  " + weeklyFractionalHours);
+        }
     }
-    System.out.println("\n\n");
-}
 }

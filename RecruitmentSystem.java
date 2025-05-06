@@ -1,16 +1,26 @@
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
+import java.awt.FlowLayout;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import java.util.ArrayList;
+    
 /**
  * RecruitmentSystem provides a Swing GUI for adding, updating,
  * terminating and displaying full- and part-time staff information.
  *
- * @Gabriel
- * @1.0
+ * @author Gabriel
+ * @version 2.0
  */
 
-    import javax.swing.*;
-    import java.awt.*;
-    import java.awt.event.*;
-    import java.util.ArrayList;
     
     public class RecruitmentSystem implements ActionListener 
     {
@@ -25,6 +35,9 @@
         private JTextField designationField;
         private JTextField qualificationField;
         private JTextField appointedByField;
+        private JTextField workingHoursField;
+        private JTextField wagesPerHourField;
+        
         
         //Buttons
         private JButton addFTButton;
@@ -40,6 +53,9 @@
         private JTextArea outputArea;
         private ArrayList<StaffHire> staffList;
         
+    /**
+     * Begins the staff list and builds the GUI.
+     */
         public RecruitmentSystem()
     {
         staffList = new ArrayList<>();
@@ -47,7 +63,7 @@
     } 
     
 /**
- * This method creates the GUI layout and initializes all components.
+ * This method creates the GUI layout and initializes swing components.
  */
        private void createGUI() 
        {
@@ -69,12 +85,12 @@
            dateField = new JTextField(8);
            frame.add(dateField);
            
-           frame.add(new JLabel("Salary:"));
+           frame.add(new JLabel("Salary: £"));
            salaryField = new JTextField (3);
            frame.add(salaryField);
            
            frame.add(new JLabel("Shift (PT):"));
-           shiftField = new JTextField(4);
+           shiftField = new JTextField(6);
            frame.add(shiftField);
            
            frame.add(new JLabel("Designation:"));
@@ -82,12 +98,20 @@
            frame.add(designationField);
            
            frame.add(new JLabel("Qualification:"));
-           qualificationField = new JTextField(10);
+           qualificationField = new JTextField(13);
            frame.add(qualificationField);
            
            frame.add(new JLabel("Appointed By:"));
-           appointedByField = new JTextField(10);
+           appointedByField = new JTextField(12);
            frame.add(appointedByField);
+           
+           frame.add(new JLabel("Working Hours (PT):"));
+           workingHoursField = new JTextField(5);
+           frame.add(workingHoursField);
+
+           frame.add(new JLabel("Wages Per Hour (PT) £:"));
+           wagesPerHourField = new JTextField(9);
+           frame.add(wagesPerHourField);
 
            frame.add(new JLabel("Index to Display:"));
            indexField = new JTextField(5);
@@ -96,11 +120,11 @@
            
            
            //Frame buttons 
-           addFTButton = new JButton("Add FT");
+           addFTButton = new JButton("Add Full-Time Staff");
            addFTButton.addActionListener(this);
            frame.add(addFTButton);
            
-           addPTButton = new JButton("Add PT");
+           addPTButton = new JButton("Add Part-Time Staff");
            addPTButton.addActionListener(this);
            frame.add(addPTButton);
            
@@ -131,45 +155,62 @@
            frame.setVisible(true);
        }
        
+    /**
+     * Responds to all button presses by performing the appropriate action.
+     *
+     * @param ActionEvent e
+     */
+       @Override
        public void actionPerformed(ActionEvent e)
     {
         try {
             String cmd = e.getActionCommand();
             int vacancy = Integer.parseInt(vacancyField.getText());
+            String name = nameField.getText();
+            String date = dateField.getText();
+            String designation = designationField.getText();
+            String qualification = qualificationField.getText();
+            String appointedBy = appointedByField.getText();
 
-            if (cmd.equals("Add FT")) {
+            if (cmd.equals("Add Full-Time Staff")) {
+                double salary = Double.parseDouble(salaryField.getText());
                 FullTimeStaffHire ft = new FullTimeStaffHire(
                     vacancy,
-                    designationField.getText(),
+                    designation,
                     "Full-Time",
-                    Integer.parseInt(salaryField.getText()),
-                    40
+                    name,
+                    date,
+                    qualification,
+                    appointedBy,
+                    true,
+                    salary,
+                    40 //Full-time staff have fixed weekly hours.
                 );
-                ft.setStaffName(nameField.getText());
-                ft.setJoiningDate(dateField.getText());
-                ft.setQualification(qualificationField.getText());
-                ft.setAppointedBy(appointedByField.getText());
-                ft.setJoined(true);
                 staffList.add(ft);
                 outputArea.setText("Full-time staff added.\n");
-            } else if (cmd.equals("Add PT")) {
+            } else if (cmd.equals("Add Part-Time Staff")) {
+                int workingHours = Integer.parseInt(workingHoursField.getText());
+                double wagesPerHour = Double.parseDouble(wagesPerHourField.getText());
+                String shift = shiftField.getText();
+                
                 PartTimeStaffHire pt = new PartTimeStaffHire(
                     vacancy,
-                    designationField.getText(),
+                    designation,
                     "Part-Time",
-                    20,
-                    10,
-                    shiftField.getText()
+                    name,
+                    date,
+                    qualification,
+                    appointedBy,
+                    true,
+                    workingHours,
+                    wagesPerHour,
+                    shift
                 );
-                pt.setStaffName(nameField.getText());
-                pt.setJoiningDate(dateField.getText());
-                pt.setQualification(qualificationField.getText());
-                pt.setAppointedBy(appointedByField.getText());
-                pt.setJoined(true);
                 staffList.add(pt);
                 outputArea.setText("Part-time staff added.\n");
+                
             }  else if (cmd.equals("Set Salary")) {
-                int newSalary = Integer.parseInt(salaryField.getText());
+                double newSalary = Double.parseDouble(salaryField.getText());
                 for (StaffHire s : staffList) {
                     if (s instanceof FullTimeStaffHire && s.getVacancyNumber() == vacancy) {
                         ((FullTimeStaffHire) s).setSalary(newSalary);
@@ -177,17 +218,16 @@
                         return;
                     }
                 }
-                outputArea.setText("FT staff not found.\n");
+                outputArea.setText("Full-Time staff not found.\n");
             } else if (cmd.equals("Set Shift")) {
                 for (StaffHire s : staffList) {
                     if (s instanceof PartTimeStaffHire && s.getVacancyNumber() == vacancy) {
                         ((PartTimeStaffHire) s).setShifts(shiftField.getText());
-                        outputArea.setText("Shift updated to:" + shiftField.getText() + "\n");
-                        s.displayDetails();
+                        outputArea.setText("Shift updated \n");
                         return;
                     }
                 }
-                outputArea.setText("PT staff not found.\n");
+                outputArea.setText("Part-Time staff not found.\n");
             } else if (cmd.equals("Terminate")) {
                 for (StaffHire s : staffList) {
                     if (s instanceof PartTimeStaffHire && s.getVacancyNumber() == vacancy) {
@@ -196,7 +236,7 @@
                         return;
                     }
                 }
-                outputArea.setText("PT staff not found.\n");
+                outputArea.setText("Part-Time staff not found.\n");
             }
             else if (cmd.equals("Display")) {
                 int index = Integer.parseInt(indexField.getText());
@@ -212,10 +252,18 @@
             }
         }
         catch (NumberFormatException ex) {
-            outputArea.setText("Please enter valid numbers.\n");
+            JOptionPane.showMessageDialog(
+                frame,
+                "Please enter valid numeric values in the highlighted fields.",
+                "Input Error",
+                JOptionPane.ERROR_MESSAGE
+            );
         }
     }
     
+    /**
+     * Clears all input text fields.
+     */
     private void clearFields()
     {
         vacancyField.setText("");
@@ -226,10 +274,15 @@
         designationField.setText("");
         qualificationField.setText("");
         appointedByField.setText("");
+        workingHoursField.setText("");
+        wagesPerHourField.setText("");
         indexField.setText("");
     }
 
-    
+    /**
+     * Launches the Recruitment System GUI.
+     * @param args      
+    */
         public static void main(String[] args) 
         {
             new RecruitmentSystem();

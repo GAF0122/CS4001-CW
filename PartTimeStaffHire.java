@@ -1,89 +1,147 @@
 
 /**
- * PartTimeStaffHire, a subclass of StaffHire used to hire part-time employees.
- * It manages attributes like working hours, wages per hour, shifts, and termination status.
+ * PartTimeStaffHire, subclass of StaffHire used to hire part-time employees.
+ * Manages attributes like working hours, wages per hour, shifts, and termination status.
  *
- * @Gabriel
- * @1.0
+ * @author Gabriel
+ * @version 2.0
  */
-public class PartTimeStaffHire extends StaffHire 
+public class PartTimeStaffHire extends StaffHire
 {
-    //Instance variables
     private int workingHours;
-    private int wagesPerHour;
+    private double wagesPerHour;
     private String shifts;
     private boolean terminated;
-    
-    
-    public PartTimeStaffHire(int vacancyNumber, String designation, String jobType, int workingHours, int wagesPerHour, String shifts) 
+
+    /**
+     * Constructs a PartTimeStaffHire with all details.
+     *
+     * @param vacancyNumber   inherited vacancy number
+     * @param designation     inherited designation
+     * @param jobType         inherited job type
+     * @param staffName       inherited staff name
+     * @param joiningDate     inherited joining date
+     * @param qualification   inherited qualification
+     * @param appointedBy     inherited appointed-by
+     * @param joined          inherited joined status
+     * @param workingHours    the number of daily working hours
+     * @param wagesPerHour    the hourly wage
+     * @param shifts          the working shift
+     */
+    public PartTimeStaffHire(
+        int vacancyNumber,
+        String designation,
+        String jobType,
+        String staffName,
+        String joiningDate,
+        String qualification,
+        String appointedBy,
+        boolean joined,
+        int workingHours,
+        double wagesPerHour,
+        String shifts
+    )
     {
         super(vacancyNumber, designation, jobType);
+        setStaffName(staffName);
+        setJoiningDate(joiningDate);
+        setQualification(qualification);
+        setAppointedBy(appointedBy);
+        setJoined(joined);
         this.workingHours = workingHours;
         this.wagesPerHour = wagesPerHour;
         this.shifts = shifts;
         this.terminated = false;
     }
-    
-    //Accessor Methods
+
+    /**
+     * Returns the working hours per day.
+     * @return workingHours
+     */
     public int getWorkingHours()
     {
-        return this.workingHours;
+        return workingHours;
     }
-    
-    public int getWagesPerHour() 
-    {
-        return this.wagesPerHour;
-    }
-    
-    public String getShifts() 
-    {
-        return this.shifts;
-    }
-    
-    public boolean isTerminated() 
-    {
-        return this.terminated;
-    }
-    
-    //Mutator methods 
-    public void setShifts(String shift) 
-    {
-        if (!terminated) 
-        {
-            this.shifts = shift;
-        } else 
-        {
-            System.out.println("Error! Cannot change shift, staff terminated.");
-        }
-    }
-        public void terminateStaff() 
-        {
-            if (!terminated) 
-            {
-                setStaffName("");
-                setJoiningDate("");
-                setQualification("");
-                setAppointedBy("");
-                setJoined(false);
-                this.terminated = true;
-            }   else 
-            {
-                System.out.println("Staff has already been terminated.");
-            }
-        }
-        
-        @Override
-        public void displayDetails() {
-            super.displayDetails();
-            if (isJoined()) {
-                System.out.println("Working hours: " + this.workingHours);
-                System.out.println("Wages per hour: " + this.wagesPerHour);
-                System.out.println("Shifts: " + this.shifts);
-                System.out.println("Terminated: " + this.terminated);
-            }
-        }
-    
 
+    /**
+     * Returns the hourly wage.
+     * @return wagesPerHour
+     */
+    public double getWagesPerHour()
+    {
+        return wagesPerHour;
+    }
+
+    /**
+     * Returns the shift.
+     * @return shifts
+     */
+    public String getShifts()
+    {
+        return shifts;
+    }
+
+    /**
+     * Returns if staff has been terminated.
+     * @return terminated
+     */
+    public boolean isTerminated()
+    {
+        return terminated;
+    }
+
+    /**
+     * Changes PT shift, if the staff has not been terminated.
+     * @param shifts 
+     */
+    public void setShifts(String shifts)
+    {
+        if (!terminated)
+        {
+            this.shifts = shifts;
+        }
+        else
+        {
+            System.out.println("Error! Cannot change shift after termination.");
+        }
+    }
+
+    /**
+     * Terminates the PT staff member.
+     * Clears personal details and sets joined to false.
+     */
+    public void terminateStaff()
+    {
+        if (!terminated)
+        {
+            setStaffName("");
+            setJoiningDate("");
+            setQualification("");
+            setAppointedBy("");
+            setJoined(false);
+            terminated = true;
+        }
+        else
+        {
+            System.out.println("Staff already terminated.");
+        }
+    }
+
+    /**
+     * Displays PT staff details, including computed income per day,
+     * only if the staff has joined.
+     */
+    @Override
+    public void displayDetails()
+    {
+        super.displayDetails();
+        if (isJoined())
+        {
+            System.out.println("Working Hours:  " + workingHours);
+            System.out.println("Wages Per Hour: " + wagesPerHour);
+            System.out.println("Shifts:         " + shifts);
+            System.out.println("Terminated:     " + terminated);
+            System.out.println("Income per Day: " + (wagesPerHour * workingHours));
+        }
+    }
 }
-
-
